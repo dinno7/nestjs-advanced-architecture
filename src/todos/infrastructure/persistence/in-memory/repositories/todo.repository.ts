@@ -20,13 +20,24 @@ export class InMemoryTodoRepository implements TodoRepository {
     return Promise.resolve(result);
   }
 
-  updateOne(id: UUID, updateFields: Partial<Omit<Todo, 'id'>>): Promise<Todo> {
+  findById(id: string): Promise<Todo> {
+    const todo = this.#todos.get(id);
+    if (!todo) {
+      throw new NotFoundException('Todo not found');
+    }
+    return Promise.resolve(TodoMapper.toDomain(todo));
+  }
+
+  updateOne(
+    id: string,
+    updateFields: Partial<Omit<Todo, 'id'>>,
+  ): Promise<Todo> {
     const todo = this.#todos.get(id);
     if (!todo) {
       throw new NotFoundException('Todo not found');
     }
     for (const key in updateFields) {
-      if (updateFields[key] && key in todo) {
+      if (key in todo) {
         todo[key] = updateFields[key];
       }
     }

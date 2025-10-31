@@ -23,6 +23,19 @@ export class TypeORMTodoRepository implements TodoRepository {
     return result.map((todo) => TodoMapper.toDomain(todo));
   }
 
+  async findById(id: string): Promise<Todo> {
+    const todo = await this.todoRepository.findOne({
+      where: {
+        id,
+      },
+    });
+
+    if (!todo) {
+      throw new NotFoundException('Todo not found');
+    }
+    return TodoMapper.toDomain(todo);
+  }
+
   async updateOne(
     id: string,
     updateFields: Partial<Omit<Todo, 'id'>>,
