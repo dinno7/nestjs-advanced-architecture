@@ -1,36 +1,30 @@
 import { Injectable } from '@nestjs/common';
 import { CreateTodoCommand } from './commands/create-todo.command';
-import { TodoRepository } from './ports/todo.repository';
-import { TodoFactory } from '../domain/factory/todo.factory';
 import { Todo } from '../domain/entities/todo';
-import { UUID } from 'crypto';
+import { CommandBus, QueryBus } from '@nestjs/cqrs';
+import { GetTodosQuery } from './queries/get-todos.query';
+import { CompeleteTodoCommand } from './commands/complete-todo.command';
+import { ToggleTodoCompleteCommand } from './commands/toggle-todo-complete.command';
 
 @Injectable()
 export class TodosService {
   constructor(
-    private readonly todoFactory: TodoFactory,
-    private readonly todoRepository: TodoRepository,
+    private readonly commandBus: CommandBus,
+    private readonly queryBus: QueryBus,
   ) {}
-  create({
-    title,
-    description,
-    severity,
-    dueDate,
-  }: CreateTodoCommand): Promise<Todo> {
-    const newTodo = this.todoFactory.create(
-      title,
-      description,
-      severity,
-      dueDate,
-    );
-    return this.todoRepository.save(newTodo);
+  create(createTodoCommand: CreateTodoCommand): Promise<Todo> {
+    return this.commandBus.execute(createTodoCommand);
   }
 
   findAll(): Promise<Todo[]> {
-    return this.todoRepository.findAll();
+    return this.queryBus.execute(new GetTodosQuery());
   }
 
-  makeComplete(todoID: UUID) {
-    return this.todoRepository.updateOne(todoID, { completed: true });
+  makeComplete(todoID: string) {
+    return this.commandBus.execute(new CompeleteTodoCommand(todoID));
+  }
+
+  toggleComplete(todoID: string) {
+    return this.commandBus.execute(new ToggleTodoCompleteCommand(todoID));
   }
 }
