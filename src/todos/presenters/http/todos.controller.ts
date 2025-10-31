@@ -20,8 +20,13 @@ export class TodosController {
     return this.todosService.findAll();
   }
 
-  @Patch(':todoID')
+  @Patch(':todoID/complete')
   makeComplete(@Param('todoID') todoID: UUID) {
     return this.todosService.makeComplete(todoID);
+  }
+
+  @Patch(':todoID/toggle')
+  toggleTodoComplte(@Param('todoID') todoID: UUID) {
+    return this.todosService.toggleComplete(todoID);
   }
 }
