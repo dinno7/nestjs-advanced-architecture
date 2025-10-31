@@ -5,9 +5,10 @@ import { TodosModule } from './todos/application/todos.module';
 import { AppBootOpts } from './common/interfaces/app-boot-opts.interface';
 import { CoreModule } from './core/core.module';
 import { TodoInfrastructureModule } from './todos/infrastructure/todo-infrastructure.module';
+import { CqrsModule } from '@nestjs/cqrs';
 
 @Module({
-  imports: [CoreModule],
+  imports: [CqrsModule.forRoot()],
   controllers: [AppController],
   providers: [AppService],
 })
