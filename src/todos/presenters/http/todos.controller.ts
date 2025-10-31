@@ -2,7 +2,6 @@ import { Controller, Get, Post, Body, Patch, Param } from '@nestjs/common';
 import { TodosService } from '../../application/todos.service';
 import { CreateTodoDto } from './dto/create-todo.dto';
 import { CreateTodoCommand } from 'src/todos/application/commands/create-todo.command';
-import { type UUID } from 'crypto';
 
 @Controller('todos')
 export class TodosController {
@@ -21,12 +20,12 @@ export class TodosController {
   }
 
   @Patch(':todoID/complete')
-  makeComplete(@Param('todoID') todoID: UUID) {
+  makeComplete(@Param('todoID') todoID: string) {
     return this.todosService.makeComplete(todoID);
   }
 
   @Patch(':todoID/toggle')
-  toggleTodoComplte(@Param('todoID') todoID: UUID) {
+  toggleTodoComplte(@Param('todoID') todoID: string) {
     return this.todosService.toggleComplete(todoID);
   }
 }

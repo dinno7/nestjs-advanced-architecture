@@ -2,12 +2,10 @@ import { TodoRepository } from 'src/todos/application/ports/todo.repository';
 import { Todo } from 'src/todos/domain/entities/todo';
 import { TodoSchema } from '../schemas/todo.schema';
 import { TodoMapper } from '../mapper/todo.mapper';
-import { UUID } from 'crypto';
-import { throws } from 'assert';
 import { NotFoundException } from '@nestjs/common';
 
 export class InMemoryTodoRepository implements TodoRepository {
-  #todos = new Map<UUID, TodoSchema>();
+  #todos = new Map<string, TodoSchema>();
 
   async save(todo: Todo): Promise<Todo> {
     const newTodo = TodoMapper.toPersistence(todo);

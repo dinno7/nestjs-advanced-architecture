@@ -4,7 +4,7 @@ import { Todo } from 'src/todos/domain/entities/todo';
 import { TodoSchema } from '../schemas/todo.schema';
 import { Repository } from 'typeorm';
 import { TodoMapper } from '../mapper/todo.mapper';
-import { UUID } from 'crypto';
+import { NotFoundException } from '@nestjs/common';
 
 export class TypeORMTodoRepository implements TodoRepository {
   constructor(
@@ -24,7 +24,7 @@ export class TypeORMTodoRepository implements TodoRepository {
   }
 
   async updateOne(
-    id: UUID,
+    id: string,
     updateFields: Partial<Omit<Todo, 'id'>>,
   ): Promise<Todo> {
     const newTodo = await this.todoRepository.update(

@@ -1,11 +1,10 @@
-import { type UUID } from 'crypto';
 import { TodoSevirityValue } from 'src/share/enums';
 import { Column, Entity, PrimaryColumn } from 'typeorm';
 
 @Entity('todos')
 export class TodoSchema {
   @PrimaryColumn('uuid')
-  id: UUID;
+  id: string;
 
   @Column()
   title: string;

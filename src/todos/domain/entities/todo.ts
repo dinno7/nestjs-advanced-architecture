@@ -1,9 +1,8 @@
-import { UUID } from 'crypto';
 import { TodoSeverity } from '../value-objects/todo-severity';
 
 export class Todo {
   constructor(
-    public readonly id: UUID,
+    public readonly id: string,
     public readonly title: string,
     public readonly description: string,
     public readonly completed: boolean,
