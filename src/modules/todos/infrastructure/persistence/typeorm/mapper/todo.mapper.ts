@@ -1,6 +1,6 @@
-import { Todo } from 'src/todos/domain/entities/todo';
+import { Todo } from 'src/modules/todos/domain/entities/todo';
 import { TodoSchema } from '../schemas/todo.schema';
-import { TodoSeverity } from 'src/todos/domain/value-objects/todo-severity';
+import { TodoSeverity } from 'src/modules/todos/domain/value-objects/todo-severity';
 
 export class TodoMapper {
   static toDomain(todo: TodoSchema): Todo {

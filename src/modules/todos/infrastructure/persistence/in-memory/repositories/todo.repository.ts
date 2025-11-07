@@ -1,5 +1,5 @@
-import { TodoRepository } from 'src/todos/application/ports/todo.repository';
-import { Todo } from 'src/todos/domain/entities/todo';
+import { TodoRepository } from 'src/modules/todos/application/ports/todo.repository';
+import { Todo } from 'src/modules/todos/domain/entities/todo';
 import { TodoSchema } from '../schemas/todo.schema';
 import { TodoMapper } from '../mapper/todo.mapper';
 import { NotFoundException } from '@nestjs/common';

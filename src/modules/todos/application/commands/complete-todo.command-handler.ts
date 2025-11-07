@@ -1,9 +1,9 @@
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
 import { Logger } from '@nestjs/common';
-import { TodoFactory } from 'src/todos/domain/factory/todo.factory';
+import { TodoFactory } from 'src/modules/todos/domain/factories/todo.factory';
 import { TodoRepository } from '../ports/todo.repository';
 import { CompeleteTodoCommand } from './complete-todo.command';
-import { Todo } from 'src/todos/domain/entities/todo';
+import { Todo } from 'src/modules/todos/domain/entities/todo';
 
 @CommandHandler(CompeleteTodoCommand)
 export class CompeleteTodoCommandHandler

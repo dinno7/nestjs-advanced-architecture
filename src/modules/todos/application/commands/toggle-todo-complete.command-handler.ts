@@ -1,6 +1,6 @@
 import { ICommandHandler, CommandHandler } from '@nestjs/cqrs';
 import { ToggleTodoCompleteCommand } from './toggle-todo-complete.command';
-import { Todo } from 'src/todos/domain/entities/todo';
+import { Todo } from 'src/modules/todos/domain/entities/todo';
 import { TodoRepository } from '../ports/todo.repository';
 import { Logger } from '@nestjs/common';
 

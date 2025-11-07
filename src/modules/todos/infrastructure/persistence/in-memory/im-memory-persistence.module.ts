@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { InMemoryTodoRepository } from './repositories/todo.repository';
-import { TodoRepository } from 'src/todos/application/ports/todo.repository';
+import { TodoRepository } from 'src/modules/todos/application/ports/todo.repository';
 
 @Module({
   providers: [

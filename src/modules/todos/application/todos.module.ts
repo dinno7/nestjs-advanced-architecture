@@ -1,6 +1,6 @@
 import { DynamicModule, Module, Type } from '@nestjs/common';
 import { TodosService } from './todos.service';
-import { TodoFactory } from '../domain/factory/todo.factory';
+import { TodoFactory } from '../domain/factories/todo.factory';
 import { TodosController } from '../presenters/http/todos.controller';
 import { GetTodosQueryHandler } from './queries/get-todos.query-handler';
 import { CreateTodoCommandHandler } from './commands/create-todo.command-handler';

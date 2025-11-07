@@ -1,7 +1,7 @@
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
 import { CreateTodoCommand } from './create-todo.command';
 import { Logger } from '@nestjs/common';
-import { TodoFactory } from 'src/todos/domain/factory/todo.factory';
+import { TodoFactory } from 'src/modules/todos/domain/factories/todo.factory';
 import { TodoRepository } from '../ports/todo.repository';
 
 @CommandHandler(CreateTodoCommand)

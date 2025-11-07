@@ -1,4 +1,4 @@
-import { Todo } from 'src/todos/domain/entities/todo';
+import { Todo } from 'src/modules/todos/domain/entities/todo';
 
 export abstract class TodoRepository {
   abstract save(todo: Todo): Promise<Todo>;

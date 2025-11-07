@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { TodoSchema } from './schemas/todo.schema';
 import { TypeORMTodoRepository } from './repositories/todo.repository';
-import { TodoRepository } from 'src/todos/application/ports/todo.repository';
+import { TodoRepository } from 'src/modules/todos/application/ports/todo.repository';
 
 @Module({
   imports: [TypeOrmModule.forFeature([TodoSchema])],

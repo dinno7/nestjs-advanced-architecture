@@ -1,6 +1,6 @@
 import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';
 import { GetTodosQuery } from './get-todos.query';
-import { Todo } from 'src/todos/domain/entities/todo';
+import { Todo } from 'src/modules/todos/domain/entities/todo';
 import { TodoRepository } from '../ports/todo.repository';
 
 @QueryHandler(GetTodosQuery)
