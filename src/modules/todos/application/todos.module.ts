@@ -6,13 +6,15 @@ import { GetTodosQueryHandler } from './queries/get-todos.query-handler';
 import { CreateTodoCommandHandler } from './commands/create-todo.command-handler';
 import { CompeleteTodoCommandHandler } from './commands/complete-todo.command-handler';
 import { ToggleTodoCompleteCommandHandler } from './commands/toggle-todo-complete.command-handler';
+import { TodoCreatedEventHandler } from './event-handlers/todo-created.event-handler';
 
 @Module({
   controllers: [TodosController],
   providers: [
-    TodosService,
     TodoFactory,
+    TodosService,
     GetTodosQueryHandler,
+    TodoCreatedEventHandler,
     CreateTodoCommandHandler,
     CompeleteTodoCommandHandler,
     ToggleTodoCompleteCommandHandler,

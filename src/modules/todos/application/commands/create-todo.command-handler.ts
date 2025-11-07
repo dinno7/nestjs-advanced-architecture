@@ -1,8 +1,9 @@
-import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
+import { CommandHandler, EventBus, ICommandHandler } from '@nestjs/cqrs';
 import { CreateTodoCommand } from './create-todo.command';
 import { Logger } from '@nestjs/common';
 import { TodoFactory } from 'src/modules/todos/domain/factories/todo.factory';
 import { TodoRepository } from '../ports/todo.repository';
+import { TodoCreatedEvent } from '../../domain/events/todo-created.event';
 
 @CommandHandler(CreateTodoCommand)
 export class CreateTodoCommandHandler
@@ -12,6 +13,7 @@ export class CreateTodoCommandHandler
   constructor(
     private readonly todoFactory: TodoFactory,
     private readonly todoRepository: TodoRepository,
+    private readonly eventBus: EventBus,
   ) {}
 
   async execute(command: CreateTodoCommand) {
@@ -24,6 +26,8 @@ export class CreateTodoCommandHandler
       command.severity,
       new Date(),
     );
+    this.eventBus.publish(new TodoCreatedEvent(newTodo));
+
     return this.todoRepository.save(newTodo);
   }
 }
